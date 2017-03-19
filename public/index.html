@@ -5,15 +5,59 @@
     <title>Jose's Spotify take home challenge submission</title>
     <script src="/angular/angular.min.js" defer></script>
     <script src="/angular-ui-router/release/angular-ui-router.js" defer></script>
-    <script src='/angular-ui-bootstap/dist/ui-boostrap.js'></script>
+    <!--<script src='/angular-ui-bootstap/dist/ui-bootstrap.js' defer></script>-->
     <script src="/main.js" defer></script>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous" defer></script>
+
 </head>
 
 <body>
-    <h1>Hello Jose here</h1>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div class="container" ng-controller="peopleController">
+        <h1>Jose's Spotify take home challenge submission</h1>
+        <div>
+            <form name="personForm">
+                <div class="form-group row">
+                    <label for="ID" class="col-xs-2 col-form-label">ID:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="number" name="id" ng-model="currentPerson.id" min="0" ng-maxlength="max" placeholder="Enter a id number"> here{{max}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="Name" class="col-xs-2 col-form-label">Name:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" name="name" ng-model="currentPerson.name" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="favoriteCity" class="col-xs-2 col-form-label">Favorite City:</label>
+                    <div class="col-xs-4">
+                        <input class="form-control" type="text" name="favoriteCity" ng-model="currentPerson.favoriteCity" placeholder="Enter city">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button ng-disabled="!!currentPerson.name||!!currentPerson.favoriteCity" ng-click="getPersons(currentPerson)" type="button" class="btn btn-secondary">Get</button>
+            <button ng-disabled="!!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="postPerson(currentPerson)" type="button" class="btn btn-secondary">Post</button>
+            <button ng-disabled="!currentPerson.id||(!currentPerson.name&&!currentPerson.favoriteCity)" ng-click="updatePerson(currentPerson)" type="button" class="btn btn-secondary">Update</button>
+            <button ng-disabled="!currentPerson.id" ng-click="deletePerson(currentPerson)" type="button" class="btn btn-secondary">Delete</button>
+        </div>
+        currentResults{{currentResults}}
+        <div ng-show="!currentResults.length"> No people data has been entered</div>
+        <div class="container well" ng-repeat="person in currentResults">
+            <h3>Person Id:{{person.id}}</h3>
+            <h3>Name:{{person.name}}</h3>
+            <h3>Favorite city:{{person.favoriteCity}}</h3>
+            <br>
+        </div>
+    </div>
+
+
 
 </body>
 

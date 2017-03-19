@@ -1,17 +1,20 @@
 app.factory('peopleFactory', function($http) {
 
-    let getData = function(response) {
-        return response.data
+    function getData(response) {
+
+        console.log('response', response)
+        return response.data;
     }
 
     return {
         getAllPeople: function() {
+
             return $http.get('/api/people')
                 .then(getData)
                 .catch()
         },
-        getSinglePerson: function(personId) {
-            return $htpp.get('/api/people/' + personId)
+        getSinglePerson: function(personInfo) {
+            return $http.get('/api/people/' + personInfo.id)
                 .then(getData)
                 .catch()
         },
@@ -21,12 +24,12 @@ app.factory('peopleFactory', function($http) {
                 .catch()
         },
         updatePerson: function(personInfo) {
-            return $http.put('/api/people' + personInfo.id, personInfo)
+            return $http.put('/api/people/' + personInfo.id, personInfo)
                 .then(getData)
                 .catch()
         },
-        deletePerson: function(personId) {
-            return $http.delete('/api/people' + personId)
+        deletePerson: function(personInfo) {
+            return $http.delete('/api/people/' + personInfo.id)
                 .then(getData)
                 .catch()
         }

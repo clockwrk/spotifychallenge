@@ -1,5 +1,9 @@
-(function() {
+let app = angular.module('myApp', ['ui.router']);
 
-    let app = angular.module('myApp', ['ui.router', 'ui.bootstrap']);
-
-})()
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+    $urlRouterProvider.otherwise("/");
+}]);

@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/browser')));
-app.use(express.static(path.join(__dirname, '/node_modueles')));
+app.use(express.static(path.join(__dirname, '/node_modules')));
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);

@@ -4,7 +4,7 @@ let gulp = require('gulp'),
     concat = require('gulp-concat'),
     babel = require('gulp-babel'),
     ngAnnotate = require('gulp-ng-annotate'),
-    uglify = require('gulp-uglify')
+    uglify = require('gulp-uglify');
 
 gulp.task('buildJS', function() {
     return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
@@ -14,6 +14,7 @@ gulp.task('buildJS', function() {
         .pipe(babel({
             presets: ['es2015']
         }))
+        .on('error', console.error.bind(console))
         .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(sourcemaps.write())

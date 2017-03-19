@@ -3,7 +3,8 @@ let Sequelize = require('sequelize');
 
 module.exports = db.define('people', {
     name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     favoriteCity: {
         type: Sequelize.STRING

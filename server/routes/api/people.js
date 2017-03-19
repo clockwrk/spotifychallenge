@@ -43,8 +43,8 @@ router.put('/:peopleId', function(req, res, next) {
 
 router.delete('/:peopleId', function(req, res, next) {
 
-    Project.destroy({
-            where: { id: req.params.id }
+    People.destroy({
+            where: { id: parseInt(req.params.peopleId) }
         })
         .then(function() {
             res.send(204)
