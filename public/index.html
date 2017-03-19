@@ -42,10 +42,10 @@
             </form>
         </div>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button ng-disabled="!!currentPerson.name||!!currentPerson.favoriteCity" ng-click="getPersons(currentPerson)" type="button" class="btn btn-secondary">Get</button>
-            <button ng-disabled="!!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="postPerson(currentPerson)" type="button" class="btn btn-secondary">Post</button>
-            <button ng-disabled="!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="updatePerson(currentPerson)" type="button" class="btn btn-secondary">Update</button>
-            <button ng-disabled="!currentPerson.id" ng-click="deletePerson(currentPerson)" type="button" class="btn btn-secondary">Delete</button>
+            <button ng-disabled="!!currentPerson.name||!!currentPerson.favoriteCity" ng-click="getPersons(currentPerson)" type="button" class="btn btn-secondary">GET</button>
+            <button ng-disabled="!!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="postPerson(currentPerson)" type="button" class="btn btn-secondary">POST</button>
+            <button ng-disabled="!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="updatePerson(currentPerson)" type="button" class="btn btn-secondary">UPDATE</button>
+            <button ng-disabled="!currentPerson.id" ng-click="deletePerson(currentPerson)" type="button" class="btn btn-secondary">DELETE</button>
         </div>
         <div class="container well" ng-repeat="person in currentResults">
             <h3>Person: {{person.id}}</h3>

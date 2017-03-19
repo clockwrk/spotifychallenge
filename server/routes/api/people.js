@@ -44,7 +44,7 @@ router.delete('/:peopleId', function(req, res, next) {
             where: { id: parseInt(req.params.peopleId) }
         })
         .then(function() {
-            res.send(204)
+            res.sendStatus(204)
         })
         .catch(next)
 })
