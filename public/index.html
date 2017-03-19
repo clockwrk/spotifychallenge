@@ -2,7 +2,7 @@
 <html ng-app="myApp">
 
 <head>
-    <title>Jose's Spotify take home challenge submission</title>
+    <title>Jose Renteria</title>
     <script src="/angular/angular.min.js" defer></script>
     <script src="/angular-ui-router/release/angular-ui-router.js" defer></script>
     <!--<script src='/angular-ui-bootstap/dist/ui-bootstrap.js' defer></script>-->
@@ -18,13 +18,13 @@
 
 <body>
     <div class="container" ng-controller="peopleController">
-        <h1>Jose's Spotify take home challenge submission</h1>
+        <h1>Jose Renteria Spotify submission</h1>
         <div>
             <form name="personForm">
                 <div class="form-group row">
                     <label for="ID" class="col-xs-2 col-form-label">ID:</label>
                     <div class="col-xs-4">
-                        <input class="form-control" type="number" name="id" ng-model="currentPerson.id" min="0" ng-maxlength="max" placeholder="Enter a id number"> here{{max}}
+                        <input class="form-control" type="number" name="id" ng-model="currentPerson.id" min="0" max="max" placeholder="Enter a id number">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -44,17 +44,16 @@
         <div class="btn-group" role="group" aria-label="Basic example">
             <button ng-disabled="!!currentPerson.name||!!currentPerson.favoriteCity" ng-click="getPersons(currentPerson)" type="button" class="btn btn-secondary">Get</button>
             <button ng-disabled="!!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="postPerson(currentPerson)" type="button" class="btn btn-secondary">Post</button>
-            <button ng-disabled="!currentPerson.id||(!currentPerson.name&&!currentPerson.favoriteCity)" ng-click="updatePerson(currentPerson)" type="button" class="btn btn-secondary">Update</button>
+            <button ng-disabled="!currentPerson.id||(!currentPerson.name && !currentPerson.favoriteCity)" ng-click="updatePerson(currentPerson)" type="button" class="btn btn-secondary">Update</button>
             <button ng-disabled="!currentPerson.id" ng-click="deletePerson(currentPerson)" type="button" class="btn btn-secondary">Delete</button>
         </div>
-        currentResults{{currentResults}}
-        <div ng-show="!currentResults.length"> No people data has been entered</div>
         <div class="container well" ng-repeat="person in currentResults">
-            <h3>Person Id:{{person.id}}</h3>
-            <h3>Name:{{person.name}}</h3>
-            <h3>Favorite city:{{person.favoriteCity}}</h3>
+            <h3>Person: {{person.id}}</h3>
+            <h3>Name: {{person.name}}</h3>
+            <h3>Favorite city: {{person.favoriteCity}}</h3>
             <br>
         </div>
+        <div ng-hide="currentResults.length">No records found</div>
     </div>
 
 

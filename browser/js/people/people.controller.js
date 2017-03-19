@@ -15,13 +15,6 @@ app.controller('peopleController', function($scope, peopleFactory) {
 
         if (!Array.isArray(results)) {
             $scope.currentResults = [results];
-        } else if (results === 204) {
-            $scope.currentResults = [{
-                id: 'RECORD DELETED',
-                name: 'RECORD DELETED',
-                favoriteCity: 'RECORD DELETED'
-            }]
-
         } else {
             $scope.currentResults = results
         }
@@ -31,7 +24,6 @@ app.controller('peopleController', function($scope, peopleFactory) {
 
     $scope.people = peopleFactory.getAllPeople().then(function(people) {
         $scope.max = parseInt(countProperties(people));
-        console.log($scope.max)
     });
 
 
@@ -40,7 +32,6 @@ app.controller('peopleController', function($scope, peopleFactory) {
     $scope.currentResults = {};
 
     $scope.getPersons = function(personInfo) {
-
         if (!!personInfo.id) {
             $scope.getSinglePerson($scope.currentPerson);
         } else {
@@ -49,7 +40,6 @@ app.controller('peopleController', function($scope, peopleFactory) {
     }
 
     $scope.getAllPeople = function() {
-        console.log('Get all people')
         peopleFactory.getAllPeople()
             .then(function(response) {
                 $scope.currentResults = response;
@@ -58,38 +48,48 @@ app.controller('peopleController', function($scope, peopleFactory) {
     }
 
     $scope.getSinglePerson = function(personInfo) {
-        console.log('Get single Person', personInfo)
         peopleFactory.getSinglePerson(personInfo)
-            .then(saveResults)
+            .then(function(result) {
+                if (!result.id) {
+                    result = {
+                        id: "No Record Found",
+                        name: "No Record Found",
+                        favoriteCity: "No Record Found"
+                    }
+                }
+                $scope.currentResults = [result];
+            })
             .catch();
-        console.log('results', $scope.currentResults)
         $scope.currentPerson = {};
     }
 
     $scope.postPerson = function(personInfo) {
-        console.log("post one person", personInfo);
         peopleFactory.postPerson(personInfo)
             .then(saveResults)
             .catch();
-        console.log("results", $scope.currentResults)
         $scope.currentPerson = {};
     }
 
     $scope.updatePerson = function(personInfo) {
-        console.log('update one person', personInfo)
         peopleFactory.updatePerson(personInfo)
-            .then(saveResults)
+            .then(function(results) {
+                $scope.currentResults = [personInfo];
+            })
             .catch();
-        console.log('results', $scope.currentResults)
         $scope.currentPerson = {};
     }
 
     $scope.deletePerson = function(personInfo) {
-        console.log('delete one person', personInfo)
-        peopleFactory.deletePerson(personInfo.id)
-            .then(saveResults)
-            .catch();
-        console.log('results', $scope.currentResults)
+
+        peopleFactory.deletePerson(personInfo)
+            .then(function() {
+                $scope.currentResults = [{
+                    id: 'RECORD DELETED',
+                    name: 'RECORD DELETED',
+                    favoriteCity: 'RECORD DELETED'
+                }]
+            })
+            .catch()
         $scope.currentPerson = {};
     }
 })

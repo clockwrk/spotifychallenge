@@ -1,8 +1,6 @@
 app.factory('peopleFactory', function($http) {
 
     function getData(response) {
-
-        console.log('response', response)
         return response.data;
     }
 

@@ -4,10 +4,8 @@ let People = require('../../db/models/people.js');
 module.exports = router;
 
 router.get('/', function(req, res, next) {
-
     People.findAll({})
         .then(function(people) {
-            console.log('people', people)
             res.send(people);
         })
         .catch(next);
@@ -42,7 +40,6 @@ router.put('/:peopleId', function(req, res, next) {
 });
 
 router.delete('/:peopleId', function(req, res, next) {
-
     People.destroy({
             where: { id: parseInt(req.params.peopleId) }
         })
